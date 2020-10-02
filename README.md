@@ -95,3 +95,40 @@ Please email security@redash.io to report any security vulnerabilities. We will 
 ## License
 
 BSD-2-Clause.
+
+
+# 采用的数据库 postgresql
+1. 打开  postgresql 服务
+2. 检查服务状态 service postgresql status, 安装:
+    1058  yum -y install postgresql
+     1060  yum install -y postgresql-server
+     
+     修改目录权限
+     修改 /var/lib/pgsql目录的归属用户：
+     [root@ds1 lib]# chown -R postgres:postgres pgsql
+     (journalctl -xe 查看服务失败的具体原因)
+     初始化服务 : postgresql-setup initdb
+     
+3. 打开服务 service postgresql start
+
+# 项目中使用的postgresql url: export REDASH_DATABASE_URL="postgresql://postgres@postgres/tests"
+
+```
+表里初始化用户
+su postgres
+# 创建root用户
+psql   
+postgres=#create user root with password 'password';    
+CREATE ROLE
+
+# 将数据库权限赋予root用户
+postgres=# GRANT ALL PRIVILEGES ON DATABASE mydatabase to root;
+GRANT
+
+# 将用户修改为超级用户（看实际需求）
+postgres=# ALTER ROLE root WITH SUPERUSER;
+
+postgres=# \q
+
+```
+4. 运行服务 python manage.py runserver -p 11111

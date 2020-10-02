@@ -20,6 +20,8 @@ Flask-WTF==0.14.3
 passlib==1.7.1
 aniso8601==8.0.0
 blinker==1.4
+
+# 需要安装postgresql-devel插件 yum install postgresql-devel*
 psycopg2==2.8.3
 python-dateutil==2.8.0
 pytz>=2019.3
