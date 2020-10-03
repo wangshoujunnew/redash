@@ -48,3 +48,33 @@ You can try out the demo instance: http://demo.redash.io/ (login with any Google
 ## License
 
 BSD-2-Clause.
+
+
+# if 直接使用docker安装
+https://github.com/repertory/docker-redash
+```text
+官方教程
+# 初始化数据
+docker-compose -f product.yml run --rm server create_db
+# 启动, 一定要用product.yml, 且要注释掉里面的 REDASH_COOKIE_SECRET: veryverysecret
+docker-compose product.yml up 这种方式是调试版本 后台启动方式（不加-d可以查看实时日志)
+# 停止服务
+docker-compose down
+```
+
+1. 进入v3.00版本
+#2. sudo docker-compose up
+#3. npm install
+#4. # Create tables
+#   sudo docker-compose run --rm server create_db
+   # Create database for tests, 用的不是test数据库, 而是postgres 数据库, 2. 外部的目录映射要提前建立好, 并做好权限, /var/lib/postgresql/data
+#   sudo docker-compose -f docker-compose.production.yml run --rm postgres psql -h postgres -U postgres -c "create database postgres"
+5. 启动: # sudo docker-compose -f docker-compose.production.yml up -d
+    sudo docker-compose -f docker-compose.production.yml up -d
+6. 参考url: https://www.cnblogs.com/BillyYoung/p/11077476.html
+7. 查看生成的docker镜像 todo
+# 还得python2.7环境呀
+/home/shoujunw/.conda/envs/python27/bin/python
+
+
+
